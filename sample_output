@@ -1,0 +1,5 @@
+{"raj_99"=>{"person_count"=>3, "city_name"=>["Kolkata", "Itanagar", "Jaipur"]}, "raj_100"=>{"person_count"=>4, "city_name"=>[]}, "raj_101"=>{"person_count"=>3, "city_name"=>["Bhubaneshwar", "Mumbai", "Chandigarh"]}, "raj_102"=>{"person_count"=>3, "city_name"=>[]}, "raj_103"=>{"person_count"=>7, "city_name"=>["Srinagar", "Chennai"]}, "raj_104"=>{"person_count"=>3, "city_name"=>["Panaji"]}}
+
+
+
+{"kumar_99"=>{"person_count"=>3, "city_name"=>"Patna"}, "kumar_100"=>{"person_count"=>9, "city_name"=>"Itanagar"}, "kumar_101"=>{"person_count"=>3, "city_name"=>"Shillong"}, "kumar_102"=>{"person_count"=>5, "city_name"=>"Chennai"}, "kumar_103"=>{"person_count"=>4, "city_name"=>"Chennai"}, "kumar_104"=>{"person_count"=>5, "city_name"=>"Bhubaneshwar"}, "kumar_105"=>{"person_count"=>6, "city_name"=>"Kolkata"}, "kumar_106"=>{"person_count"=>5, "city_name"=>"Chennai"}, "kumar_107"=>{"person_count"=>6, "city_name"=>"Lucknow"}}

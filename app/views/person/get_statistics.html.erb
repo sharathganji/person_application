@@ -1,0 +1,15 @@
+<div class="col-xs-12">
+  <div class="header">
+    <h3>Hash Of Managers</h3>
+  </div>
+  <div class="body">
+    <% @person_hash.each do |key,value| %>
+        <%= key %>: <% value %> <br />
+        <% value.each do |key1, value1| %>
+            <%= key1 %>: <%= value1 %> <br />
+        <% end %>
+    <% end %>
+  </div>
+</div>
+
+
