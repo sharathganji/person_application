@@ -1,6 +1,6 @@
 module Test
 
-  def self.get_person_records
+  def get_person_records
     @person_array = []
     for manager_id in (100..300)
       @person_array << Person.find_by(manager_id: manager_id)
@@ -8,7 +8,7 @@ module Test
   end
 
 
-  def self.get_statistics
+  def get_statistics
     person_hash = Hash.new
     get_person_records
 
