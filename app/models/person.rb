@@ -16,6 +16,21 @@ class Person < ApplicationRecord
     end_time = Time.now
     puts (end_time - start_time)
   end
+
+
+  def Person.create_records
+    person_records = []
+    name = "kumar"
+    salary = rand(10000..100000)
+    manager_id = (100..300).to_a
+    today=Date.today
+    (1..1000000).each do |record|
+      person_records << [name+"_"+record.to_s,salary,manager_id.sample,today,today]
+    end
+    #puts person_records
+    columns = [:name, :salary, :manager_id, :created_at, :updated_at]
+    Person.import columns,person_records, validate: false
+  end
 end
 
 

@@ -1,26 +1,18 @@
 class PersonController < ApplicationController
   def person_csv_file
-    name = "kumar"
-    salary = rand(10000..100000)
-    manager_id = (100..300).to_a
-    today=Time.now
-    CSV.open("tmp/person.csv", "w") do |csv|
-      1000000.times do |record|
-        csv << [name+"_"+record.to_s,salary,manager_id.sample,today.to_formatted_s(:db),today.to_formatted_s(:db)]
-      end
-    end
-
   end
 
   def create_records
     person_info = []
-    csv_text = File.read('tmp/person.csv')
-    csv = CSV.parse(csv_text)
-    csv.each do |row|
-      person_info << [row[0], row[1], row[2], row[3], row[4], row[5]]
+    name = "kumar"
+    salary = rand(10000..100000)
+    manager_id = (100..300).to_a
+    today=Date.today
+    (1..1000000).each do |record|
+      person_info << [name+"_"+record.to_s,salary,manager_id.sample,today,today]
     end
-    columns = [:id, :name, :salary, :manager_id, :created_at, :updated_at]
-    Person.import columns, person_info, validate: false
+    columns = [:name, :salary, :manager_id, :created_at, :updated_at]
+    Person.import columns,person_info, validate: false
 
   end
 

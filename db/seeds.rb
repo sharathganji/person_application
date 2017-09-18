@@ -6,27 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-#require 'csv'
-
+person_records = []
 name = "kumar"
 salary = rand(10000..100000)
 manager_id = (100..300).to_a
-today=Time.now
-CSV.open("tmp/person.csv", "w") do |csv|
-  1000000.times do |record|
-    csv << [name+"_"+record.to_s,salary,manager_id.sample,today.to_formatted_s(:db),today.to_formatted_s(:db)]
-  end
+today=Date.today
+(1..1000000).each do |record|
+  person_records << [name+"_"+record.to_s,salary,manager_id.sample,today,today]
 end
-
-
-person_info = []
-csv_text = File.read('tmp/person.csv')
-csv = CSV.parse(csv_text)
-csv.each do |row|
-  person_info << [row[0], row[1], row[2], row[3], row[4], row[5]]
-end
-columns = [:id, :name, :salary, :manager_id, :created_at, :updated_at]
-Person.import columns, person_info, validate: false
+columns = [:name, :salary, :manager_id, :created_at, :updated_at]
+Person.import columns,person_records, validate: false
 
 
 
@@ -36,20 +25,10 @@ city_name = ["Mumbai","Delhi","Bangalore","Hyderabad","Ahmedabad","Chennai","Kol
              "Bhubaneswar","Salem","Warangal","Guntur","Bhiwandi","Saharanpur","Gorakhpur","Bikaner","Amravati","Noida","Jamshedpur","Bhilai","Cuttack","Fiozabad","Kochi",'Nellore',"Bhavnagar","Dehradun","Durgapur","Asansol","Rourkela","Nanded","Kolhapur","Ajmer","Akola","Gulbarga","Jamnagar","Ujjain","Loni","Siliguri","Jhansi","Ulhasnagar","Jammu","Mangalore","Erode","Belgaum","Ambattur","Tirunelveli","Malegaon"]
 
 
-today=Time.now
-CSV.open("tmp/person_city.csv", "w") do |csv|
-  10000.times do |record|
-    csv << [record,record,city_name.sample,today.to_formatted_s(:db),today.to_formatted_s(:db)]
-  end
-end
-
-
+today=Date.today
 person_city_info = []
-csv_text = File.read('tmp/person_city.csv')
-csv = CSV.parse(csv_text)
-csv.each do |row|
-  person_city_info << [row[0], row[1], row[2], row[3], row[4]]
+(1..10000).each  do |record|
+  person_city_info << [record,city_name.sample,today,today]
 end
-
-columns = [:id, :person_id, :city_name, :created_at, :updated_at]
+columns = [:person_id,:city_name, :created_at, :updated_at]
 PersonCity.import columns, person_city_info, validate: false
