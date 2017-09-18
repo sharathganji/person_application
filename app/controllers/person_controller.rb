@@ -50,7 +50,7 @@ class PersonController < ApplicationController
 
   def delete_records
     person_records = Person.all
-    #Person.delete_all
+    Person.delete_all
     #ActiveRecord::Base.connection.execute("TRUNCATE people")
   end
 
