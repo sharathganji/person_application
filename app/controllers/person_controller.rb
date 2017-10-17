@@ -17,33 +17,32 @@ class PersonController < ApplicationController
   end
 
   def get_person_records
-    @person_array = []
-    for manager_id in (100..300)
-      @person_array << Person.find_by(manager_id: manager_id)
-    end
   end
 
 
   def get_statistics
     @person_hash = Hash.new
-    get_person_records
+    @person_array = Person.pluck(:manager_id).uniq
 
-    @person_array.each do |obj|
-      person_record = Person.find_by(id: obj.manager_id)
+    person_manager = Person.includes(&:person_city).where(manager_id: @person_array).group_by(&:manager_id)
+
+
+
+
+    person_manager.each do |manager_id, person_count|
+      person_record = Person.find(manager_id)
 
       @person_hash["#{person_record.name}"] = {}
-      person_manager = Person.where("manager_id = ?", obj.manager_id)
-      @person_hash["#{person_record.name}"]["person_count"] = person_manager.count
+      @person_hash["#{person_record.name}"]["person_count"] = person_count
       @person_hash["#{person_record.name}"]["city_name"] = (person_record.person_city).city_name
+
     end
+
     puts "person_hash"
     puts @person_hash.inspect
   end
 
   def delete_records
-    person_records = Person.all
-    Person.delete_all
-    #ActiveRecord::Base.connection.execute("TRUNCATE people")
   end
 
 end

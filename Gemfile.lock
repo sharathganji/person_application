@@ -43,8 +43,6 @@ GEM
     arel (7.1.4)
     bindex (0.5.0)
     builder (3.2.3)
-    bulk_insert (1.5.0)
-      activerecord (>= 4.1.0)
     byebug (9.1.0)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
@@ -85,6 +83,7 @@ GEM
     nio4r (2.1.0)
     nokogiri (1.8.0)
       mini_portile2 (~> 2.2.0)
+    pg (0.21.0)
     puma (3.10.0)
     rack (2.0.3)
     rack-test (0.6.3)
@@ -163,13 +162,13 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-import
-  bulk_insert
   byebug
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
   mysql2
+  pg
   puma (~> 3.0)
   rails (~> 5.0.5)
   sass-rails (~> 5.0)
