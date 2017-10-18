@@ -12,7 +12,7 @@ development:
   encoding: utf8
   database: product
   username: root
-  password: root123
+  password:
   host: 127.0.0.1
   port: 3306
 
@@ -29,6 +29,6 @@ development:
 #  database: db/production.sqlite3
 
 production:
-   <<: *default
-   adapter: postgresql
-   database: db/production.sqlite3
+  <<: *default
+  adapter: postgresql
+  database: db/production.sqlite3

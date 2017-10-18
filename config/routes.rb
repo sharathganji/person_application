@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root "person#get_statistics"
   get 'person/get_person_records'
 
   get 'person/get_statistics'
