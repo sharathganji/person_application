@@ -1,4 +1,4 @@
-module Test
+module PersonManager
 
   def get_statistics
     @person_hash = Hash.new

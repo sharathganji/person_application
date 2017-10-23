@@ -17,4 +17,12 @@ belongs_to :person
     PersonCity.import columns, person_city_info, validate: false
 
   end
+
+  def PersonCity.delete_records_using_truncate
+    start_time = Time.now
+    ActiveRecord::Base.connection.execute("TRUNCATE person_cities")
+    end_time = Time.now
+    puts (end_time - start_time)
+  end
+
 end

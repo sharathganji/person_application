@@ -24,10 +24,7 @@ class PersonController < ApplicationController
     @person_hash = Hash.new
     @person_array = Person.pluck(:manager_id).uniq
 
-    person_manager = Person.includes(&:person_city).where(manager_id: @person_array).group_by(&:manager_id)
-
-
-
+    person_manager = Person.includes(:person_city).where(manager_id: @person_array).group(:manager_id).count(:id)
 
     person_manager.each do |manager_id, person_count|
       person_record = Person.find(manager_id)

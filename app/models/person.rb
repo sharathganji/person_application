@@ -1,6 +1,6 @@
 class Person < ApplicationRecord
   has_one :person_city
-  include Test
+  include PersonManager
 
   def Person.delete_records_using_delete
     person_records = Person.all
@@ -32,41 +32,24 @@ class Person < ApplicationRecord
     Person.import columns,person_records, validate: false
   end
 
-  def Person.get_manager_as_records
-    manager_ids_array = Person.pluck(:manager_id).uniq
-    person_count = Person.where(manager_id: manager_ids_array).group(:manager_id).count(:id)
-    puts person_count.inspect
-  end
 
   def Person.get_statistics
-    new_person_records = []
-    s = Time.now
     @person_hash = Hash.new
     @person_array = Person.pluck(:manager_id).uniq
 
+    person_manager = Person.includes(:person_city).where(manager_id: @person_array).group(:manager_id).count(:id)
 
-    new_person_records = Person.where(id: @person_array)
+    person_manager.each do |manager_id, person_count|
+      person_record = Person.find(manager_id)
 
-    new_person_records.each do |person_rec|
-      person_city_names = (person_rec.person_city).city_name
-      new_person_records << [person_city_names]
+      @person_hash["#{person_record.name}"] = {}
+      @person_hash["#{person_record.name}"]["person_count"] = person_count
+      @person_hash["#{person_record.name}"]["city_name"] = (person_record.person_city).city_name
+
     end
 
-    puts new_person_records.inspect
-    #person_manager = Person.where(manager_id: @person_array).group(:manager_id).count(:id)
-
-    #person_manager.each do |manager_id, person_count|
-    #  person_record = Person.find(manager_id)
-
-    #  @person_hash["#{person_record.name}"] = {}
-    #  @person_hash["#{person_record.name}"]["person_count"] = person_count
-    #  @person_hash["#{person_record.name}"]["city_name"] = (person_record.person_city).city_name
-
-    #end
-    #e = Time.now
-    #puts "person_hash"
-    #puts (e - s)
-    #puts @person_hash.inspect
+    puts "person_hash"
+    puts @person_hash.inspect
   end
 
 
